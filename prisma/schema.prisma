@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  // We set an `id` variable
+  // With an `Int` type (number)
+  // Then, we set the Prisma decorators:
+  // - @id (because it's an ID)
+  // - @default(autoincrement()) (default value is auto-incremented)
+  id Int @id @default(autoincrement())
+
+  // We set an `email` variable
+  // With a `String` type
+  // Then, we set the Prisma decorator:
+  // - @unique (because we want the user to be unique
+  // based on the email - two users can't have the same)
+  username String @unique
+
+}
