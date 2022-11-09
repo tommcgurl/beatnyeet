@@ -1,13 +1,12 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          We are the leather daddies
-        </h1>
+        <h1 className={styles.title}>We are the leather daddies</h1>
 
         <p className={styles.description}>
           Get started by editing{" "}
@@ -19,6 +18,10 @@ export default function Home() {
             <h2>Documentation &rarr;</h2>
             <p>Find in-depth information about Next.js 13</p>
           </a>
+
+          <Link href="/playthroughs" className={styles.card}>
+            Playthroughs
+          </Link>
 
           <a
             href="https://github.com/vercel/next.js/tree/canary/examples"
