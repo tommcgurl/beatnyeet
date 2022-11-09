@@ -25,4 +25,20 @@ model User {
   // based on the email - two users can't have the same)
   username String @unique
 
+  playthroughs Playthrough[]
+
+}
+
+model Playthrough {
+  id Int @id @default(autoincrement())
+  game    Game    @relation(fields: [gameId], references: [id])
+  gameId  Int
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model Game {
+  id Int @id @default(autoincrement())
+  name String @unique
+  playthroughs Playthrough[]
 }

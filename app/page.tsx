@@ -6,7 +6,7 @@ export default function Home() {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          We are decidedly not the leather daddies
+          We are the leather daddies
         </h1>
 
         <p className={styles.description}>
