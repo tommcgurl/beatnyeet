@@ -5,10 +5,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
+yarn dev 
 ```
+This will install the deps you need, run the database migrations using Prisma, and seed the database with some intial mock data.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
