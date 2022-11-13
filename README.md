@@ -16,6 +16,7 @@ Prisma comes with a built-in GUI to view and edit the data in your database. You
 ```bash
 npx prisma studio
 ```
+![prismastudio](https://user-images.githubusercontent.com/5060039/201525971-b0686f1b-a260-49ed-b3b4-bb236a29a75e.gif)
 
 ## NextJS 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
