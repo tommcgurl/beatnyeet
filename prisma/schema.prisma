@@ -35,6 +35,10 @@ model Playthrough {
   gameId  Int
   user User @relation(fields: [userId], references: [id])
   userId Int
+  startDate DateTime?
+  completionDate DateTime?
+  platform String?
+  review String?
 }
 
 model Game {

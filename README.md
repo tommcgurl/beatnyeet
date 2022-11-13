@@ -7,10 +7,17 @@ First, run the development server:
 ```bash
 yarn dev 
 ```
-This will install the deps you need, run the database migrations using Prisma, and seed the database with some intial mock data.
+> This will install the deps you need, run the database migrations using Prisma, and seed the database with some intial mock data.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Explore the data in Prisma Studio
+Prisma comes with a built-in GUI to view and edit the data in your database. You can open it using the following command:
+```bash
+npx prisma studio
+```
+
+## NextJS 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
