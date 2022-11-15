@@ -1,35 +1,17 @@
 import { PrismaClient } from "@prisma/client";
+import seedUsers from "./seed-scripts/seed-users";
+import seedGames from "./seed-scripts/seed-games";
+import seedPlaythroughs from "./seed-scripts/seed-playthroughs";
+
 const prisma = new PrismaClient();
 async function main() {
-  const tom = await prisma.user.upsert({
-    where: { username: "tommcgurl" },
-    update: {},
-    create: {
-      username: "tommcgurl",
-    },
-  });
-  const matt = await prisma.user.upsert({
-    where: { username: "mattclawson" },
-    update: {},
-    create: {
-      username: "mattclawson",
-    },
-  });
-  const noah = await prisma.user.upsert({
-    where: { username: "noahberman" },
-    update: {},
-    create: {
-      username: "noahberman",
-    },
-  });
-  const will = await prisma.user.upsert({
-    where: { username: "whereiswill?" },
-    update: {},
-    create: {
-      username: "whereiswill",
-    },
-  });
-  console.log({ tom, matt, noah, will });
+  const seededUsers = await seedUsers(prisma);
+  const seededGames = await seedGames(prisma);
+  const seededPlaythroughs = await seedPlaythroughs(prisma);
+  // Promise.all(see)v
+  console.log(seededUsers);
+  console.log(seededGames)
+  console.log(seededPlaythroughs);
 }
 main()
   .then(async () => {

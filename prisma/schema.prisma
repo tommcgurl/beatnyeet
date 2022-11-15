@@ -39,6 +39,7 @@ model Playthrough {
   completionDate DateTime?
   platform String?
   review String?
+  @@unique([gameId, userId, platform])
 }
 
 model Game {
