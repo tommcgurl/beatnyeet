@@ -18,6 +18,15 @@ npx prisma studio
 ```
 ![prismastudio](https://user-images.githubusercontent.com/5060039/201525971-b0686f1b-a260-49ed-b3b4-bb236a29a75e.gif)
 
+## API
+The API routes were auto generated from our prisma schema using [Next-Crud](https://next-crud.js.org/)
+
+You can see the available endpoints by visiting [the open api spec (localhost:3000/api/docs)](http://localhost:3000/api/docs) when running the server locally.
+
+You can easily import this into Postman to save as a collection.
+![postman](https://user-images.githubusercontent.com/5060039/201816097-16045d3a-9813-49ff-8b0f-8e35ee97bdd4.gif)
+
+
 ## NextJS 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
