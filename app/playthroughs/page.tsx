@@ -1,21 +1,10 @@
 import { use } from "react";
 import styles from "../page.module.css";
-
-type Playthrough = {
-  id: number;
-  user: {
-    id: number;
-    username: string;
-  };
-  game: {
-    id: number;
-    name: string;
-  };
-};
-
-type PlaythroughsProps = {
-  playthroughs: Playthrough[];
-};
+import { Playthrough, Game, User } from "@prisma/client";
+type PlaythroughWithGameAndUser = Playthrough & {
+  game: Game,
+  user: User,
+}
 
 async function fetchPlaythroughData() {
   const playthroughs = await fetch("http://localhost:3000/api/playthroughs");
@@ -29,7 +18,7 @@ export default function Playthroughs() {
     <div className={styles.container}>
       <main className={styles.main}>
         <ul>
-          {playthroughs.map((playthrough: Playthrough) => {
+          {playthroughs.map((playthrough: PlaythroughWithGameAndUser) => {
             return (
               <li>
                 <h1>Game name: {playthrough.game.name}</h1>
