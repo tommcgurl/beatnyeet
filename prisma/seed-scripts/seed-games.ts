@@ -5,7 +5,7 @@ const seedGames = async (prisma: PrismaClient) => {
     "Hades",
     "Castlevania: Symphony of the Night",
     "Metroid: Zero Mission",
-    "Eldin Ring",
+    "Rachet & Clank: A Rift Apart",
   ];
   let upsertedGames = [];
   // Must use for in to do them in sequence so

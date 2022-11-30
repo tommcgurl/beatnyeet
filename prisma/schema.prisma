@@ -37,7 +37,7 @@ model Playthrough {
   userId Int
   startDate DateTime?
   completionDate DateTime?
-  platform String?
+  platform String
   review String?
   @@unique([gameId, userId, platform])
 }
