@@ -1,6 +1,6 @@
 import styles from './Game.module.css';
 
-type GameProps = {
+export type GameProps = {
   name: string;
   coverURL?: string;
   summary?: string;
