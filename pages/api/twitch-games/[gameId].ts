@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import {_getAuthToken, IGDBGame, IGDB_BASE_URL} from './index'
 
 
-const _getQuery = (gameId: number) => {
+const _getQuery = (gameId: string) => {
   return `
   fields id, name, summary, cover.url, platforms.name, platforms.abbreviation;
   where id = ${gameId};
@@ -12,10 +12,10 @@ const _getQuery = (gameId: number) => {
 }
 
 type GetGameByIdArgs = {
-  gameId: number;
+  gameId: string;
   token: string;
 }
-const _getGameById = async ({
+const _getGamesById = async ({
   gameId,
   token,
 }: GetGameByIdArgs): Promise<IGDBGame> => {
@@ -40,13 +40,15 @@ const _getGameById = async ({
   return await response.json();
 }
 
+const _formatGameId = (gameId: string) => gameId.split(',').length ? `(${gameId})` : gameId
+
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse<IGDBGame | string>
 ) => {
-  const gameId = parseInt(req.query?.gameId as string);
-  if (!gameId || isNaN(gameId)) {
-    res.status(400).send('Invalid game ID')
+  const { gameId } = req.query;
+  if (!gameId) {
+    res.status(400).send('Invalid Game ID')
   }
   try {
     // TODO: We don't want to actually get the token with every request. 
@@ -54,8 +56,8 @@ const handler = async (
     // to include it in all subsequent requests. We would then validate the token and
     // refresh it if necessary.
     const {accessToken} = await _getAuthToken();
-    const result = await _getGameById({
-      gameId,
+    const result = await _getGamesById({
+      gameId: _formatGameId(gameId as string),
       token: accessToken
     })
     
