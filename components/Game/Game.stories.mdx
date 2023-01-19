@@ -1,15 +1,36 @@
-import { Meta, Story } from '@storybook/addon-docs';
+import { Meta, Story } from "@storybook/addon-docs";
 
-import Game from './Game';
+import Game from "./Game";
 
-<Meta title="Components/Game" component={Game}/>
+<Meta title="Components/Game" component={Game} />
+
+export const Template = (args) => (
+  //👇 Your template goes here
+  <Game {...args} />
+);
 
 # Game
 
-<Story name="Example">
-  <Game name="Chrono Trigger" summary="Chrono Trigger is a remaster of the timeless, classic role-playing game of the same name. Controls been updated, and the graphics and sound have also been revamped to make your adventure even more fun and enjoyable to play. To complete your journey, also included is the mysterious 'Dimensional Vortex' dungeon and the forgotten 'Lost Sanctum' dungeon. Meet the challenges presented to you and long-lost secrets may be revealed..." coverURL="https://images.igdb.com/igdb/image/upload/t_thumb/da1rqewlhi2bzniggxli.jpg"/>
+<Story
+  name="Example"
+  args={{
+    name:"Chrono Trigger",
+    summary:"Chrono Trigger is a remaster of the timeless, classic role-playing game of the same name. Controls been updated, and the graphics and sound have also been revamped to make your adventure even more fun and enjoyable to play. To complete your journey, also included is the mysterious 'Dimensional Vortex' dungeon and the forgotten 'Lost Sanctum' dungeon. Meet the challenges presented to you and long-lost secrets may be revealed...",
+    cover: {
+      url: "https://images.igdb.com/igdb/image/upload/t_thumb/da1rqewlhi2bzniggxli.jpg",
+    },
+    platforms: []
+  }}>
+  {Template.bind()}
 </Story>
 
-<Story name="Metroid Fusion">
-  <Game name="Metroid Fusion" summary={`The famed Metroid series makes its return on the Game Boy Advance with Metroid Fusion. After Samus' exploits in the Super Nintendo classic Super Metroid, the intergalactic bounty hunter becomes infected with a parasitic life form known only as \"X\". Samus is rescued and revived by Metroid DNA only after undergoing some major changes in her body and suit, resulting in a drastic change in her appearance, and a new ability to absorb and assimilate the abilities of the \"X\" virus. Experience a new and enthralling chapter in the Metroid series, and relive the timeless gameplay and exploration that made the series a legend.`} coverURL="https://images.igdb.com/igdb/image/upload/t_thumb/co3w49.jpg"/>
+<Story name="Metroid Fusion"  args={{
+    name:"Metroid Fusion",
+    summary:`The famed Metroid series makes its return on the Game Boy Advance with Metroid Fusion. After Samus' exploits in the Super Nintendo classic Super Metroid, the intergalactic bounty hunter becomes infected with a parasitic life form known only as \"X\". Samus is rescued and revived by Metroid DNA only after undergoing some major changes in her body and suit, resulting in a drastic change in her appearance, and a new ability to absorb and assimilate the abilities of the \"X\" virus. Experience a new and enthralling chapter in the Metroid series, and relive the timeless gameplay and exploration that made the series a legend.`,
+    cover:{
+      url: "https://images.igdb.com/igdb/image/upload/t_thumb/co3w49.jpg",
+    },
+    platforms:[]
+  }}>
+  {Template.bind()}
 </Story>

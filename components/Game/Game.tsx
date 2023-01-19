@@ -1,13 +1,10 @@
 import styles from './Game.module.css';
+import { IGDBGame } from '../../pages/api/twitch-games';
 
-export type GameProps = {
-  name: string;
-  coverURL?: string;
-  summary?: string;
-}
-const Game = ({name, coverURL, summary}: GameProps) => (
+
+const Game = ({name, cover, summary, platforms}: IGDBGame) => (
   <div className={styles.container}>
-    <img alt={`${name}-cover`} src={coverURL}></img>
+    <img alt={`${name}-cover`} src={cover?.url}></img>
     <div className={styles.infoContainer}>
       <h3>{name}</h3>
       <p>{summary}</p>

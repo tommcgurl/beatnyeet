@@ -31,19 +31,12 @@ model User {
 
 model Playthrough {
   id Int @id @default(autoincrement())
-  game    Game    @relation(fields: [gameId], references: [id])
   gameId  Int
   user User @relation(fields: [userId], references: [id])
   userId Int
   startDate DateTime?
   completionDate DateTime?
-  platform String
+  platformId Int
   review String?
-  @@unique([gameId, userId, platform])
-}
-
-model Game {
-  id Int @id @default(autoincrement())
-  name String @unique
-  playthroughs Playthrough[]
+  @@unique([gameId, userId, platformId])
 }

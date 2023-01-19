@@ -7,6 +7,24 @@ type TwitchToken = {
   tokenType: string;
 };
 
+export type IGDBPlatform = {
+  id: string,
+  name: string,
+}
+
+export type IGDBCoverImage = {
+  id: string,
+  url: string
+}
+
+export type IGDBGame = {
+  id: string;
+  name: string;
+  summary?: string;
+  platforms?: IGDBPlatform[],
+  cover?: IGDBCoverImage
+}
+
 const IGDB_BASE_URL = 'https://api.igdb.com/v4'
 
 const _getAuthToken = async () => {
@@ -34,6 +52,14 @@ const _getAuthToken = async () => {
   }
 }
 
+const _getQuery = (searchString: string) => {
+  return `
+  fields id, name, summary, cover.url, platforms.name, platforms.abbreviation;
+  search "${searchString}";
+  limit: 10;
+`.replace(/\n/g, ' ').trim();
+}
+
 type SearchGameArgs = {
   searchString: string;
   token: string;
@@ -41,8 +67,8 @@ type SearchGameArgs = {
 const _searchGame = async ({
   searchString,
   token,
-}: SearchGameArgs) => {
-  const query = `fields id, name, summary, cover.url; where name ~ "${searchString}"*; limit: 5;`
+}: SearchGameArgs): Promise<IGDBGame[]> => {
+  const query = _getQuery(searchString)
   const {
     TWITCH_API_ClIENT_ID: clientID,
   } = process.env;
@@ -64,8 +90,11 @@ const _searchGame = async ({
 
 const handler = async (
   req: NextApiRequest,
-  res: NextApiResponse<TwitchToken | string>
+  res: NextApiResponse<IGDBGame[] | string>
 ) => {
+  if (!req.query.name) {
+    res.status(400).send('Query parameter "name" is required.')
+  }
   try {
     // TODO: We don't want to actually get the token with every request. 
     // Instead we can send the token back as a secure http cookie and allow the user
@@ -80,7 +109,7 @@ const handler = async (
     
     res.status(200).json(result);
   } catch(err) {
-    res.status(500).json(err as string)
+    res.status(500).send(err as string)
   }
 }
 
