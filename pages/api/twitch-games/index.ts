@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type TwitchToken = {
+export type TwitchToken = {
   accessToken: string;
   expiresIn: string;
   tokenType: string;
@@ -25,9 +25,9 @@ export type IGDBGame = {
   cover?: IGDBCoverImage
 }
 
-const IGDB_BASE_URL = 'https://api.igdb.com/v4'
+export const IGDB_BASE_URL = 'https://api.igdb.com/v4'
 
-const _getAuthToken = async () => {
+export const _getAuthToken = async () => {
   const {
     TWITCH_API_ClIENT_ID: clientID,
     TWITCH_API_CLIENT_SECRET: clientSecret
