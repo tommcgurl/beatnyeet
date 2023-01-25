@@ -1,3 +1,24 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #d0d0d0;
+    --text-color: #333;
+  }
+  html {
+    color-scheme: light;
+    color: var(--text-color);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #555;
+    --text-color: #d0d0d0;
+  }
+  html {
+    color-scheme: dark;
+    color: var(--text-color);
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -15,12 +36,6 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: #a5a5a5;
-    background: black;
-  }
+h1, h2, h3, h4, p {
+  color: var(--text-color);
 }

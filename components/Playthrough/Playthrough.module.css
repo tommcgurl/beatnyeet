@@ -12,6 +12,7 @@
 }
 
 .card {
+  list-style: none;
   padding: 1.5rem;
   text-align: left;
   color: inherit;

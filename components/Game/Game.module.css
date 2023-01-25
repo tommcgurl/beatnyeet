@@ -1,14 +1,13 @@
 .container {
   display: flex;
   align-items: center;
-  border: 1px solid lightgrey;
+  border: 1px solid var(--text-color);
   border-radius: 8px;
   padding: 16px;
-  color: whitesmoke;
 }
 
 .container img {
-  height: 100px;
+  height: 80px;
   width: auto;
   margin-right: 16px;
 }

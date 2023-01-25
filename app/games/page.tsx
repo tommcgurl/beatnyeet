@@ -3,23 +3,16 @@ import { ChangeEventHandler, use, useCallback, useEffect, useState } from "react
 import styles from './games.module.css';
 import Game from '../../components/Game/Game'
 import debounce from 'lodash.debounce';
+import { IGDBGame } from "../../pages/api/twitch-games";
 
 async function searchGames(searchString: string) {
   const games = await fetch(`http://localhost:3000/api/twitch-games?name=${searchString}`);
   return games.json();
 }
 
-type GameResult = {
-  name: string,
-  summary?: string,
-  cover?: {
-    id: string,
-    url: string,
-  }
-}
 export default function Playthroughs() {
   const [searchString, setSearchString] = useState('');
-  const [games, setGames] = useState<GameResult[]>([])
+  const [games, setGames] = useState<IGDBGame[]>([])
 
   useEffect(() => {
     if (!searchString) {
@@ -45,7 +38,7 @@ export default function Playthroughs() {
         <input onChange={debouncedSearchHandler} placeholder="search game by name"></input>
         <ul className={styles.list}>
           {games.map((game) => 
-            <Game name={game.name} summary={game.summary} coverURL={game.cover?.url}/>
+            <Game key={game.id} {...game}/>
           )}
         </ul>
       </main>

@@ -40,7 +40,7 @@ const _getGamesById = async ({
   return await response.json();
 }
 
-const _formatGameId = (gameId: string) => gameId.split(',').length ? `(${gameId})` : gameId
+const _formatGameId = (gameId: string) => `(${gameId})`
 
 const handler = async (
   req: NextApiRequest,
