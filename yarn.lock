@@ -9140,6 +9140,11 @@ react-refresh@^0.11.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.11.0.tgz#77198b944733f0f1f1a90e791de4541f9f074046"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
 
+react-select-search@^4.1.6:
+  version "4.1.6"
+  resolved "https://registry.yarnpkg.com/react-select-search/-/react-select-search-4.1.6.tgz#4c3165e02007518726e004267fd1168e0076061d"
+  integrity sha512-BJMf11Ux0hqn6Z3BqRwceXdwjdF+dnpDsYGGehDPB/nZv+Dse7wdPUMqLSCVDyrH5y3xFu7r6IlZ6dj78291vA==
+
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
@@ -9965,6 +9970,11 @@ store2@^2.12.0:
   version "2.14.2"
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.14.2.tgz#56138d200f9fe5f582ad63bc2704dbc0e4a45068"
   integrity sha512-siT1RiqlfQnGqgT/YzXVUNsom9S0H1OX+dpdGN1xkyYATo4I6sep5NmsRD/40s3IIOvlCq6akxkqG82urIZW1w==
+
+storybook-addon-css-user-preferences@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/storybook-addon-css-user-preferences/-/storybook-addon-css-user-preferences-0.0.3.tgz#0dc378e9ee05e2c864838d4997fe87d97719c26d"
+  integrity sha512-Pd4krIZPQTYItkVq6pgT4ytDg0Bop5xZseu73QZzdShQWURt7DAS69QbyR1TIzcALjJ8JzUwC9bBsliVQ1Dewg==
 
 stream-browserify@^2.0.1:
   version "2.0.2"
