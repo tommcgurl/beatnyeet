@@ -55,7 +55,7 @@ export default function Playthroughs() {
         <h1>Playthroughs</h1>
         <ul className={styles.list}>
           {playthroughs.map((playthrough) => 
-            <Playthrough {...playthrough}/>
+            <Playthrough key={playthrough.id} {...playthrough}/>
           )}
         </ul>
       </main>

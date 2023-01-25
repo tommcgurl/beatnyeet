@@ -1,24 +1,14 @@
 export type PlaythroughInputs = {
-    gameName: string,
+    gameId: string,
     userName: string,
-    platform: string,
+    platformId: string,
     startDate: Date,
     completionDate: Date | null,
     review: string
   }
 
-export const submitPlaythrough = async ({ gameName, userName, platform, startDate, completionDate, review }: PlaythroughInputs) => {
+export const submitPlaythrough = async ({ gameId, userName, platformId, startDate, completionDate, review }: PlaythroughInputs) => {
     const requestData = {
-      game: {
-        connectOrCreate: {
-          where: {
-            name: gameName
-          },
-          create: {
-            name: gameName
-          }
-        }
-      },
       user: {
         connectOrCreate: {
           where: {
@@ -31,10 +21,11 @@ export const submitPlaythrough = async ({ gameName, userName, platform, startDat
       },
       startDate: new Date(startDate).toISOString(),
       completionDate: completionDate ?  new Date(completionDate).toISOString() : null,
-      platform,
+      platformId,
+      gameId,
       review
     }
-    const createPlaythroughResponse = await fetch("http://localhost:3000/api/playthroughs?include=game,user", {
+    const createPlaythroughResponse = await fetch("http://localhost:3000/api/playthroughs?include=user", {
       method: "POST",
       body: JSON.stringify(requestData),
       headers: {"Content-Type": "application/json"}
