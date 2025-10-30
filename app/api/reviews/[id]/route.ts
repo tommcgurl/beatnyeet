@@ -73,7 +73,19 @@ export async function PATCH(
       finishDate,
       playTimeHours,
       content,
+      screenshotsToAdd,
+      screenshotsToRemove,
     } = body;
+
+    // Handle screenshot deletions
+    if (screenshotsToRemove && screenshotsToRemove.length > 0) {
+      await prisma.screenshot.deleteMany({
+        where: {
+          id: { in: screenshotsToRemove },
+          reviewId: id, // Ensure we only delete screenshots from this review
+        },
+      });
+    }
 
     const updatedReview = await prisma.review.update({
       where: { id },
@@ -84,6 +96,14 @@ export async function PATCH(
         finishDate: finishDate ? new Date(finishDate) : undefined,
         playTimeHours: playTimeHours ? parseFloat(playTimeHours) : undefined,
         content: content !== undefined ? content : undefined,
+        screenshots: screenshotsToAdd?.length
+          ? {
+              create: screenshotsToAdd.map((s: any) => ({
+                url: s.url,
+                caption: s.caption || null,
+              })),
+            }
+          : undefined,
       },
       include: {
         user: {

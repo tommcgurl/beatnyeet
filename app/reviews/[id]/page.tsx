@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ScreenshotGallery } from "@/components/screenshot-gallery";
 import { DeleteReviewButton } from "@/components/delete-review-button";
-import { Star, Calendar, Clock, Download } from "lucide-react";
+import { Star, Calendar, Clock, Download, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -80,7 +80,15 @@ export default async function ReviewPage({ params }: { params: Promise<{ id: str
                   <span className="text-muted-foreground">/ 10</span>
                 </div>
                 {isOwner && (
-                  <DeleteReviewButton reviewId={review.id} redirectPath="/" />
+                  <div className="flex gap-2">
+                    <Button asChild variant="outline" size="sm">
+                      <Link href={`/reviews/${review.id}/edit`}>
+                        <Pencil className="h-4 w-4 mr-2" />
+                        Edit Review
+                      </Link>
+                    </Button>
+                    <DeleteReviewButton reviewId={review.id} redirectPath="/" />
+                  </div>
                 )}
               </div>
             </div>

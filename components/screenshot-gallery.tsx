@@ -56,7 +56,7 @@ export function ScreenshotGallery({ screenshots }: ScreenshotGalleryProps) {
       </div>
 
       <Dialog open={selectedIndex !== null} onOpenChange={() => setSelectedIndex(null)}>
-        <DialogContent className="max-w-5xl p-0" showCloseButton={false}>
+        <DialogContent className="!max-w-[60vw] !max-h-[60vh] p-0" showCloseButton={false}>
           <VisuallyHidden>
             <DialogTitle>
               {selectedIndex !== null && screenshots[selectedIndex].caption
