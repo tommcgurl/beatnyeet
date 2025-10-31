@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ReviewCard } from "@/components/review-card";
 import { ReviewCardWithActions } from "@/components/review-card-with-actions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CurrentlyPlayingSection } from "@/components/currently-playing-section";
 
 async function getUserWithReviews(userId: string) {
   const user = await prisma.user.findUnique({
@@ -28,6 +29,23 @@ async function getUserWithReviews(userId: string) {
           game: true,
           screenshots: true,
           saveFile: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+      currentlyPlaying: {
+        include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              image: true,
+            },
+          },
+          game: true,
+          screenshots: true,
         },
         orderBy: {
           createdAt: "desc",
@@ -96,6 +114,15 @@ export default async function ProfilePage({ params }: { params: Promise<{ userId
             </div>
           </CardContent>
         </Card>
+
+        <CurrentlyPlayingSection
+          currentlyPlaying={user.currentlyPlaying.map((cp) => ({
+            ...cp,
+            createdAt: cp.createdAt.toISOString(),
+            startDate: cp.startDate?.toISOString() || null,
+          }))}
+          isOwnProfile={isOwnProfile}
+        />
 
         <div className="mb-6">
           <h2 className="text-2xl font-bold">Reviews</h2>

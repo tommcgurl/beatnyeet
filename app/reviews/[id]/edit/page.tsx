@@ -47,7 +47,11 @@ export default async function EditReviewPage({ params }: { params: Promise<{ id:
             Update your review for {review.game.title}
           </p>
         </div>
-        <EditReviewForm review={review} />
+        <EditReviewForm review={{
+          ...review,
+          startDate: review.startDate?.toISOString() || null,
+          finishDate: review.finishDate?.toISOString() || null,
+        }} />
       </div>
     </main>
   );

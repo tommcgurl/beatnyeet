@@ -20,9 +20,10 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   
-  reviews       Review[]
-  accounts      Account[]
-  sessions      Session[]
+  reviews          Review[]
+  currentlyPlaying CurrentlyPlaying[]
+  accounts         Account[]
+  sessions         Session[]
 }
 
 model Account {
@@ -69,7 +70,8 @@ model Game {
   platforms   String?  // JSON string
   createdAt   DateTime @default(now())
   
-  reviews     Review[]
+  reviews          Review[]
+  currentlyPlaying CurrentlyPlaying[]
 }
 
 model Review {
@@ -109,4 +111,30 @@ model SaveFile {
   uploadedAt DateTime @default(now())
   
   review     Review   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+}
+
+model CurrentlyPlaying {
+  id            String    @id @default(cuid())
+  userId        String
+  gameId        String
+  platform      String
+  startDate     DateTime?
+  playTimeHours Float?
+  notes         String?   // Optional notes about progress
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  user          User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  game          Game                        @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  screenshots   CurrentlyPlayingScreenshot[]
+}
+
+model CurrentlyPlayingScreenshot {
+  id                 String           @id @default(cuid())
+  currentlyPlayingId String
+  url                String
+  caption            String?
+  uploadedAt         DateTime         @default(now())
+  
+  currentlyPlaying   CurrentlyPlaying @relation(fields: [currentlyPlayingId], references: [id], onDelete: Cascade)
 }

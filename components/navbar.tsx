@@ -28,6 +28,9 @@ export function Navbar() {
             <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
               Reviews
             </Link>
+            <Link href="/playing" className="text-sm font-medium hover:text-primary transition-colors">
+              Now Playing
+            </Link>
             {session && (
               <Link href="/reviews/new" className="text-sm font-medium hover:text-primary transition-colors">
                 New Review
@@ -63,6 +66,9 @@ export function Navbar() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/reviews/new">New Review</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/playing/new">Now Playing</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/login" })}>
