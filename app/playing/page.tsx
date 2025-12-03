@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { CurrentlyPlayingCard } from "@/components/currently-playing-card";
 import { ConvertToReviewModal } from "@/components/convert-to-review-modal";
 import { useSession } from "next-auth/react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Plus } from "lucide-react";
 
 interface CurrentlyPlaying {
   id: string;
@@ -79,16 +82,34 @@ export default function PlayingPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-slate-50 dark:from-slate-950 dark:via-purple-950/20 dark:to-slate-950">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Currently Playing</h1>
-          <p className="text-muted-foreground">
-            Games that the community is actively playing
-          </p>
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-4xl font-bold mb-2">Currently Playing</h1>
+            <p className="text-muted-foreground">
+              Games that the community is actively playing
+            </p>
+          </div>
+          {session && currentlyPlaying.length > 0 && (
+            <Button asChild>
+              <Link href="/playing/new">
+                <Plus className="h-4 w-4 mr-2" />
+                Add Game
+              </Link>
+            </Button>
+          )}
         </div>
 
         {currentlyPlaying.length === 0 ? (
           <div className="text-center py-16">
-            <p className="text-muted-foreground">No games currently being played</p>
+            <p className="text-muted-foreground mb-4">No games currently being played</p>
+            {session && (
+              <Button asChild>
+                <Link href="/playing/new">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Game
+                </Link>
+              </Button>
+            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
